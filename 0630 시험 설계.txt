@@ -1,0 +1,66 @@
+﻿https://github.com/kjh0816/kotlin_ssg/tree/master/src/main/kotlin
+
+- Article 클래스에
+boardId, 
+memberId, 
+liked, 
+hitCount, 
+relTypeCode=article
+keywordStr ( #을 구분자로 해서 추가 )
+( Board에 대해서는 Controller는 만들 필요없고, 
+테스트 게시판만 만들 예정이므로, Board, BoardRepository, BoardService만
+제작)
+
+
+- 게시물 리스팅 
+(/usr/article/list
+?searchKeyword=""&
+boardId=&
+orderByColumn= *id, *hitCount, *likedCount&
+orderAscTypeCode=*asc, *desc
+searchKeywordTypeCode=keyword
+
+)
+  - 필터링 순서
+    - boardId, searchKeyword
+    - orderByColumn
+    - orderAscTypeCode
+  - 검색 조건에 해당하는 게시물 갯수 표시
+  - itemCountInAPage = 10
+
+
+
+- 게시물 상세페이지
+  - 조회수 증가 
+  - keywordStr를 body 밑에 노출
+
+- like 컨트롤러
+ 중복 좋아요 금지, 좋아요와 싫어요 동시에 불가능
+(/usr/like
+/like
+/cancelLike
+/disLike
+/cancelDislike
+?
+relTypeCode=article
+id=게시물 번호
+
+
+- 테스트 관련
+게시판: 자유, 공지 게시판 추가
+게시물: 100개 , 조회수가 랜덤으로 들어가도록.
+
+
+
+)
+
+싫어요를 누른적이 없는데 싫어요를 눌렀다.
+
+- 좋아요 객체가 있는지 확인한다.
+  - 객체가 있는 경우, 
+    - 객
+  - 객체가 없는 경우, 
+
+
+
+
