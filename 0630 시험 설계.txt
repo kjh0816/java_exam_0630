@@ -114,15 +114,13 @@ String getKeywordsStrFromStr(String str)
 
 게시물 내용이 10자 이상일 경우, 키워드를 형태소에 저장
 
-74, 오래된 순으로 정렬
-  - /usr/article/list?orderByColumn=id&orderAscTypeCode=asc
-77, 조회수 높은 순으로 정렬
-  - /usr/article/list?orderByColumn=hitCount&orderAscTypeCode=desc
-81, 좋아요 수 높은 순으로 정렬
-  - /usr/article/list?orderByColumn=likeCount&orderAscTypeCode=desc
-82, 싫어요 수 낮은 순으로 정렬
-  - /usr/article/list?orderByColumn=dislikeCount&orderAscTypeCode=asc
 
+
+
+
+public int hitCount;  // 조회수
+public int like;	// 좋아요
+public int dislike;  // 싫어요
 
 
 

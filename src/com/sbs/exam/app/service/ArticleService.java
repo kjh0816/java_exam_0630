@@ -1,8 +1,10 @@
 package com.sbs.exam.app.service;
 
+import java.util.Comparator;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.sbs.exam.app.container.Container;
 import com.sbs.exam.app.dto.Article;
@@ -148,14 +150,35 @@ public class ArticleService {
 
 	}
 
-	public List<Article> getSortedArticles(List<Article> filteredArticles, String orderByColumn, String orderAscTypeCode) {
-		
-		List<Article> sortedArticles = null;
-		if(orderByColumn.equals("id") && orderAscTypeCode.equals("asc")) {
-			
-			}
+
+	public List<Article> getSortedArticles(List<Article> filteredArticles, String orderByColumn,
+			String orderAscTypeCode) {
+
+		if (orderByColumn.equals("id") && orderAscTypeCode.equals("asc")) {
+			return filteredArticles.stream().sorted(Comparator.comparing(Article::getId))
+					.collect(Collectors.toList());
+		} else if (orderByColumn.equals("hitCount") && orderAscTypeCode.equals("asc")) {
+			return filteredArticles.stream().sorted(Comparator.comparing(Article::getHitCount))
+					.collect(Collectors.toList());
+		} else if (orderByColumn.equals("hitCount") && orderAscTypeCode.equals("desc")) {
+			return filteredArticles.stream().sorted(Comparator.comparing(Article::getHitCount).reversed())
+					.collect(Collectors.toList());
+		}else if (orderByColumn.equals("likeCount") && orderAscTypeCode.equals("asc")) {
+			return filteredArticles.stream().sorted(Comparator.comparing(Article::getLike))
+					.collect(Collectors.toList());
+		}else if (orderByColumn.equals("likeCount") && orderAscTypeCode.equals("desc")) {
+			return filteredArticles.stream().sorted(Comparator.comparing(Article::getLike).reversed())
+					.collect(Collectors.toList());
+		}else if (orderByColumn.equals("dislikeCount") && orderAscTypeCode.equals("asc")) {
+			return filteredArticles.stream().sorted(Comparator.comparing(Article::getDislike).reversed())
+					.collect(Collectors.toList());
+		}else if (orderByColumn.equals("dislikeCount") && orderAscTypeCode.equals("desc")) {
+			return filteredArticles.stream().sorted(Comparator.comparing(Article::getDislike))
+					.collect(Collectors.toList());
 		}else {
-//			id 의 desc를 기본 정렬로 한다.
+//			id 의 desc를 기본 정렬로 한다. ( 최신순 )
+			return filteredArticles.stream().sorted(Comparator.comparing(Article::getId).reversed())
+					.collect(Collectors.toList());
 		}
 	}
 }
