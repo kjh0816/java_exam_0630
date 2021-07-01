@@ -112,7 +112,7 @@ public class UsrArticleController extends Controller {
 		if (id == 0) {
 			System.out.println("id를 입력해주세요.");
 			return;
-		}
+		} 
 
 		
 		Article article = articleService.getArticleById(id);
@@ -151,21 +151,16 @@ public class UsrArticleController extends Controller {
 
 	private void actionList(Rq rq) {
 		List<Article> articles = articleService.getArticles();
-//		(/usr/article/list
-//				?searchKeyword=""&
-//				boardId=&
-//				orderByColumn= *id, *hitCount, *likedCount&
-//				orderAscTypeCode=*asc, *desc
-//				searchKeywordTypeCode=keyword
+
 		int boardId = rq.getIntParam("id", 0);
 		int page = rq.getIntParam("page", 0);
 		String searchKeyword = rq.getStrParam("searchKeyword", "");
 		String searchKeywordTypeCode = rq.getStrParam("searchKeywordTypeCode", "");
 
-		String orderByColumn = rq.getStrParam("orderByColumn", ""); // sorting 필요
+		String orderByColumn = rq.getStrParam("orderByColumn", "id"); // sorting 필요
 		String orderAscTypeCode = rq.getStrParam("orderAscTypeCode", ""); // sorting 필요
 
-		String boardName = "전체";
+		String boardName = "";
 		String keyword = "";
 		String keywordType = "";
 		if (!searchKeywordTypeCode.isEmpty() && !searchKeyword.isEmpty()) {
@@ -173,11 +168,7 @@ public class UsrArticleController extends Controller {
 			keyword = "( 검색 키워드: " + searchKeyword + " )";
 
 		}
-
-		if (boardId != 0) {
-			Board board = boardService.getBoardById(boardId);
-			boardName = board.getName().trim();
-		}
+		
 
 		int itemCountInAPage = 10;
 //		1) searchKeyword와 boardId로 필터링
@@ -186,16 +177,26 @@ public class UsrArticleController extends Controller {
 		List<Article> filteredArticles = articleService.getSearchKeywordBoardFilteredArticles(searchKeyword,
 				searchKeywordTypeCode, boardId, page, itemCountInAPage);
 		
+		List<Article> sortedArticles = articleService.getSortedArticles(orderByColumn, orderAscTypeCode);
+		
 		int articleCount = filteredArticles.size();
 		
-		System.out.println("=== " + boardName + " 게시물 목록 ===");
+		int totalCount = articleService.getArticles().size();
+		if (boardId != 0) {
+			Board board = boardService.getBoardById(boardId);
+			boardName = board.getName().trim() + " ";
+		}else if(articleCount == totalCount) {
+			boardName = "전체 ";
+		}
+		
+		System.out.println("=== " + boardName + "게시물 목록 ===");
 		if (!searchKeywordTypeCode.isEmpty()) {
 			System.out.println(keywordType);
 		}
 		if (!searchKeyword.isEmpty()) {
 			System.out.println(keyword);
 		}
-		System.out.println("( 총 게시물 수: " + articleCount + " )");
+		System.out.println("( 조회된 게시물 수: " + articleCount + " )");
 		System.out.printf("번호 / 작성날짜 / 제목 / 작성자 / 조회수 / 좋아요 / 싫어요 \n");
 		for (Article article : filteredArticles) {
 			String writerName = memberService.getMemberById(article.getMemberId()).getNickname();

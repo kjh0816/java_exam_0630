@@ -124,8 +124,7 @@ String getKeywordsStrFromStr(String str)
   - /usr/article/list?orderByColumn=dislikeCount&orderAscTypeCode=asc
 
 
-85, 게시물 검색시 키워드 검색
-  - /usr/article/list?searchKeyword=내용&searchKeywordTypeCode=keyword
+
 
 
 
