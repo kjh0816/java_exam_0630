@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Like extends Object{
 	private int id;
+	private String relTypeCode;
 	private int memberId;
 	private int articleId;
 	private boolean articleLike;

@@ -15,6 +15,12 @@ public class App {
 	App() {
 		sc = Container.getSc();
 	}
+	
+	private void autoLoginForTest(int id) {
+		Member member = Container.getMemberService().getMemberById(id);
+		new Rq().login(member);
+	}
+	
 
 	public void run() {
 		System.out.println("== 텍스트 게시판 시작 ==");
@@ -23,7 +29,10 @@ public class App {
 			String promprName = "명령어";
 
 			Rq rq = new Rq();
+			
 
+			autoLoginForTest(1);
+			
 			if (rq.isLogined()) {
 				Member loginedMember = rq.getLoginedMember();
 				promprName = loginedMember.getNickname();

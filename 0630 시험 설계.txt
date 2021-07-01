@@ -54,12 +54,78 @@ id=게시물 번호
 
 )
 
-싫어요를 누른적이 없는데 싫어요를 눌렀다.
+좋아요
+싫어요
 
 - 좋아요 객체가 있는지 확인한다.
   - 객체가 있는 경우, 
     - 객
   - 객체가 없는 경우, 
+
+
+/usr/article/list?searchKeyword=1&searchKeywordTypeCode=title
+/usr/article/list?searchKeyword=1&searchKeywordTypeCode=body
+
+/usr/article/list?searchKeyword=1&searchKeywordTypeCode=title&orderByColumn=hitCount
+
+like와 dislike가 있다
+ >> 구분해주어야한다.
+
+/usr/like/like?relTypeCode=article&id=1
+완료
+/usr/like/cancleLike?relTypeCode=article&id=1
+완료
+
+/usr/like/dislike?relTypeCode=article&id=1
+/usr/like/cancleDislike?relTypeCode=article&id=1
+
+/usr/article/detail?id=100
+/usr/article/list
+/usr/article/list?page=1
+
+좋아요 : 57
+싫어요 : 7
+
+
+Article(id=10, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=66, like=91, dislike=20, title=제목 10, body=내용 10), 
+Article(id=11, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=38, like=27, dislike=6, title=제목 11, body=내용 11), 
+Article(id=12, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=84, like=71, dislike=77, title=제목 12, body=내용 12), 
+Article(id=13, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=33, like=94, dislike=57, title=제목 13, body=내용 13), 
+Article(id=14, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=39, like=84, dislike=73, title=제목 14, body=내용 14), 
+Article(id=15, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=74, like=31, dislike=94, title=제목 15, body=내용 15), 
+Article(id=16, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=50, like=26, dislike=98, title=제목 16, body=내용 16), 
+Article(id=17, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=86, like=91, dislike=5, title=제목 17, body=내용 17), 
+Article(id=18, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=10, like=15, dislike=16, title=제목 18, body=내용 18), 
+Article(id=19, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=87, like=100, dislike=60, title=제목 19, body=내용 19), 
+Article(id=21, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=76, like=39, dislike=32, title=제목 21, body=내용 21), 
+Article(id=31, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=3, like=32, dislike=53, title=제목 31, body=내용 31), 
+Article(id=41, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=73, like=50, dislike=90, title=제목 41, body=내용 41), 
+Article(id=51, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=58, like=27, dislike=12, title=제목 51, body=내용 51), 
+Article(id=61, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=32, like=34, dislike=95, title=제목 61, body=내용 61), 
+Article(id=71, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=51, like=72, dislike=20, title=제목 71, body=내용 71), 
+Article(id=81, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=84, like=52, dislike=75, title=제목 81, body=내용 81), 
+Article(id=91, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=4, like=7, dislike=5, title=제목 91, body=내용 91), 
+Article(id=100, regDate=2021-07-01 05:51:36, updateDate=2021-07-01 05:51:36, memberId=1, boardId=1, hitCount=56, like=80, dislike=93, title=제목 100, body=내용 100)]
+
+
+keywordsStr
+List<String> getKeywordsFromStr(String str)
+String getKeywordsStrFromStr(String str)
+
+게시물 내용이 10자 이상일 경우, 키워드를 형태소에 저장
+
+74, 오래된 순으로 정렬
+  - /usr/article/list?orderByColumn=id&orderAscTypeCode=asc
+77, 조회수 높은 순으로 정렬
+  - /usr/article/list?orderByColumn=hitCount&orderAscTypeCode=desc
+81, 좋아요 수 높은 순으로 정렬
+  - /usr/article/list?orderByColumn=likeCount&orderAscTypeCode=desc
+82, 싫어요 수 낮은 순으로 정렬
+  - /usr/article/list?orderByColumn=dislikeCount&orderAscTypeCode=asc
+
+
+85, 게시물 검색시 키워드 검색
+  - /usr/article/list?searchKeyword=내용&searchKeywordTypeCode=keyword
 
 
 

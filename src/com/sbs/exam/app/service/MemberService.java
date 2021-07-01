@@ -13,17 +13,17 @@ public class MemberService {
 	}
 
 	public void makeTestData() {
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 100; i++) {
 			String loginId = "user" + (i + 1);
 			String loginPw = loginId;
-			String name = "홍길동" + (i + 1);
-			String nickname = "강바랑" + (i + 1);
+			String name = "지후_" + (i + 1);
+			String nickname = "언더테이커_" + (i + 1);
 
 			join(loginId, loginPw, name, nickname);
 		}
 	}
 
-	private int join(String loginId, String loginPw, String name, String nickname) {
+	public int join(String loginId, String loginPw, String name, String nickname) {
 		return memberRepository.join(loginId, loginPw, name, nickname);
 	}
 

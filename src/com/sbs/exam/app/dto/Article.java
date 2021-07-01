@@ -7,15 +7,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Article extends Object {
-	private int id;
-	private String relTypeCode; // =article
+public class Article extends Object{
+	public int id;
 	private String regDate;
 	private String updateDate;
-	private String keywordStr;
-	private int boardId;
-	private int memberId;
-	private int hitCount;  // 조회수
+	public int memberId;
+	public int boardId;
+	public int hitCount;  // 조회수
+	public int like;
+	public int dislike;
 	private String title;
 	private String body;
+	private String keywordsStr;
 }
